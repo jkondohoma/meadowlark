@@ -6,7 +6,8 @@
   "main": "meadowlark.js",
   "email": "project@hostname.com",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "lint": "eslint meadowlark.js lib"
   },
   "author": "Jaelle Kondohoma",
   "license": "ISC",
@@ -15,6 +16,8 @@
     "express-handlebars": "^5.3.4"
   },
   "devDependencies": {
-    "jest": "^27.3.1"
+    "eslint": "^8.1.0",
+    "jest": "^27.3.1",
+    "puppeteer": "^11.0.0"
   }
 }

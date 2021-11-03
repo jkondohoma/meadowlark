@@ -8,12 +8,9 @@
 
 const express = require("express");
 const expressHandlebars = require("express-handlebars");
-const fortune = require('./lib/fortune');
-const handlers = require('./lib/handlers')
-
+const handlers = require("./lib/handlers");
 
 const app = express();
-const port = process.env.PORT || 3000;
 
 // configure Handlebars view engine
 app.engine(
@@ -23,6 +20,12 @@ app.engine(
   })
 );
 app.set("view engine", "handlebars");
+
+/* eslint-disable no-undef */
+const port = process.env.PORT || 3000;
+/* eslint-enable no-undef */
+
+
 /**
  * app.get is the method by which we’re adding routes. In the Express documentation,
 you will see app.METHOD. This doesn’t mean that there’s literally a method called
@@ -35,23 +38,35 @@ it doesn’t care about the case or trailing slash, and it doesn’t consider
 the querystring when performing the match
  */
 
+/* eslint-disable no-undef */
+app.use(express.static(__dirname + '/public'));
+/* eslint-enable no-undef */
+
 //no longer have to specify the content type or status code: the view
 // engine will return a content type of text/html and a status code of 200 by default.
-app.get('/', handlers.home)
+app.get("/", handlers.home);
 
 //deliver the random fortune cookie:
-app.get('/about', handlers.about)
+app.get("/about", handlers.about);
 
-app.use(express.static(__dirname + "/public"));
+// app.use(express.static(__dirname + "/public"));
 // custom 404 page
 app.use(handlers.notFound);
 
 // custom 500 page
 app.use(handlers.serverError);
 
-app.listen(port, () =>
-  console.log(
-    `Express started on http://localhost:${port}; ` +
-      `press Ctrl-C to terminate.`
-  )
-);
+//modify our application so that it can be required as a module
+//if you run a JavaScript file directly with node, require.main will equal
+// the global module; otherwise, it’s being imported from another module.
+
+if (require.main === module) {
+  app.listen(port, () => {
+    console.log(
+      `Express started on http://localhost:${port}` +
+        "; press Ctrl-C to terminate."
+    );
+  });
+} else {
+  module.exports = app;
+}
