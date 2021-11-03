@@ -12,6 +12,7 @@
   "author": "Jaelle Kondohoma",
   "license": "ISC",
   "dependencies": {
+    "bootstrap": "^5.1.3",
     "express": "^4.17.1",
     "express-handlebars": "^5.3.4"
   },

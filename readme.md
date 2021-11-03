@@ -32,13 +32,14 @@ To run app on local server
 - Linting
   - like having a second set of eyes: it will spot things that will slide right past our human brains.
     - will be using ESLint
+    - 'npm run lint'
 
 ## Version 1.1.2 Chapter 6
 
 - Express route to display request headers sent by browser sent to server
 - Disable response headers from sending server information
 
-## Version 1.2 Chapter 7
+## Version 1.1.3 Chapter 7
 
 - templating with handlerbars
 - A view usually represents an individual page on your website
@@ -46,3 +47,8 @@ To run app on local server
   view—essentially, a template for templates. Layouts are essential because most (if not
   all) of the pages on your site will have an almost identical layout
 - weather middleware
+
+## Version 1.2 Chapter 8
+
+- form handling with express
+

@@ -8,6 +8,7 @@
 
 const express = require("express");
 const expressHandlebars = require("express-handlebars");
+const bodyParser = require('body-parser')
 const handlers = require("./lib/handlers");
 
 const app = express();
@@ -47,7 +48,7 @@ the querystring when performing the match
 /* eslint-disable no-undef */
 app.use(express.static(__dirname + "/public"));
 /* eslint-enable no-undef */
-
+app.use(bodyParser.urlencoded({ extended: true }));
 //no longer have to specify the content type or status code: the view
 // engine will return a content type of text/html and a status code of 200 by default.
 app.get("/", handlers.home);
@@ -62,6 +63,9 @@ app.use(handlers.notFound);
 // custom 500 page
 app.use(handlers.serverError);
 
+app.get('/newsletter-signup', handlers.newsletterSignup)
+app.post('/newsletter-signup/process', handlers.newsletterSignupProcess)
+app.get('/newsletter-signup/thank-you', handlers.newsletterSignupThankYou)
 //modify our application so that it can be required as a module
 //if you run a JavaScript file directly with node, require.main will equal
 // the global module; otherwise, it’s being imported from another module.
