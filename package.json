@@ -1,0 +1,16 @@
+{
+  "name": "meadowlarktravel",
+  "version": "1.0.0",
+  "description": "fictional travel engency",
+  "homepage": "https://github.com/jkondohoma/meadowlark.git",
+  "main": "meadowlark.js",
+  "email": "project@hostname.com",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jaelle Kondohoma",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
