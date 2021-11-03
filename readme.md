@@ -13,7 +13,7 @@ To run app on local server
 * Tidying up
 * modularize fortune cookie functionality 
 
-## Version 1.1.1 Quality Control
+## Version 1.1.1 Chapter 5
 * Unit testing: test specific functions
     * It can get tedious to constantly be rerunning your tests every time
 you make a change to your code. Fortunately, most test frameworks
@@ -28,6 +28,11 @@ necessary to let npm know to pass the --watch argument to Jest).
 * Linting
     * like having a second set of eyes: it will spot things that will slide right past our human brains.
         * will be using ESLint
+
+## Version 1.1.2 Chapter 6
+
+* Express route to display request headers sent by browser sent to server
+* Disable response headers from sending server information
 
 
  
