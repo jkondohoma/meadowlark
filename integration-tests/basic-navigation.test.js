@@ -9,32 +9,31 @@
 6. Verifies that we are on the /about page
  */
 
+const portfinder = require('portfinder')
+const puppeteer = require('puppeteer')
 
-const portfinder = require('portfinder');
-const puppeteer = require('puppeteer');
+const app = require('../meadowlark.js')
 
-const app = require('../meadowlark.js');
+let server = null
+let port = null
 
-let server = null;
-let port = null;
-
-//start our server before each test
 beforeEach(async () => {
-    port = await portfinder.getPortPromise()
-    server = app.listen(port)
+  port = await portfinder.getPortPromise()
+  server = app.listen(port)
 })
 
-// stop server after each test
-afterEach (()=> {
-    server.close();
+afterEach(() => {
+  server.close()
 })
 
 test('home page links to about page', async () => {
-    const browser = await puppeteer.launch();
-    const page = await browser.newPage();
-
-    await page.goto(`http://localhost:${port}`);
-
-    expect(page.url().toBe(`http://localhost:${port}`/about));
-    await browser.close();
+  const browser = await puppeteer.launch()
+  const page = await browser.newPage()
+  await page.goto(`http://localhost:${port}`)
+  await Promise.all([
+    page.waitForNavigation(),
+    page.click('[data-test-id="about"]'),
+  ])
+  expect(page.url()).toBe(`http://localhost:${port}/about`)
+  await browser.close()
 })
