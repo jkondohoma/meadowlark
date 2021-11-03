@@ -17,6 +17,13 @@ app.engine(
   "handlebars",
   expressHandlebars({
     defaultLayout: "main",
+    helpers: {
+      section: function (name, options) {
+        if (!this._sections) this._sections = {};
+        this._sections[name] = options.fn(this);
+        return null;
+      },
+    },
   })
 );
 app.set("view engine", "handlebars");
@@ -24,7 +31,6 @@ app.set("view engine", "handlebars");
 /* eslint-disable no-undef */
 const port = process.env.PORT || 3000;
 /* eslint-enable no-undef */
-
 
 /**
  * app.get is the method by which we’re adding routes. In the Express documentation,
@@ -39,7 +45,7 @@ the querystring when performing the match
  */
 
 /* eslint-disable no-undef */
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + "/public"));
 /* eslint-enable no-undef */
 
 //no longer have to specify the content type or status code: the view
