@@ -11,5 +11,9 @@ To run app on local server
 * Tidying up
 * modularize fortune cookie functionality 
 
+## Versions 1.1.1 Quality Control
+* Unit testing
+* integration testing
+
 
  
