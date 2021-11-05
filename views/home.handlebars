@@ -71,6 +71,23 @@
   <button type="submit" class="btn btn-primary">Add To Cart</button>
 </ul>
 
+<p>To simulate a successful cart check-out, fill out the following form:</p>
+<form class="form" action="/cart/checkout" method="post">
+  <div class="form-group">
+    <label>Name:
+      <input name="name" class="form-control" />
+    </label>
+  </div>
+  <div class="form-group">
+    <label>Email:
+      <input type="email" name="email" class="form-control" />
+    </label>
+  </div>
+  <div class="form-group">
+    <button type="submit" class="btn btn-primary">Simulate Order</button></div>
+  </div>
+</form>
+
 {{> weather}}
 <h2>Tell Us About Yourself</h2>
 <form action="/process-contact" method="post">

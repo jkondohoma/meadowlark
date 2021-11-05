@@ -66,4 +66,7 @@ To run app on local server
   * middleware is a way to encapsulate functionality—specifically, functionality that operates on an HTTP request to your application.
   * Middleware is executed in what’s known as a pipeline. You can imagine a physical pipe, carrying water. The water gets pumped in at one end, and then there are gauges and valves before the water gets where it’s going. The important part about this analogy is that order matters; if you put a pressure gauge before a valve, it has a different effect than if you put the pressure gauge after the valve. Similarly, if you have a valve that injects something into the water, everything “downstream” from that valve will contain the added ingredient. In an Express app, you insert middleware into the pipeline by calling app.use.
 
+## Version 1.2.3 Chapter 11
+
+- email automation
 
