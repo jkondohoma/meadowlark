@@ -1,5 +1,32 @@
 <h1>Welcome to Meadowlark Travel</h1>
 <h2>Home</h2>
 {{> weather}}
+
+<ul>
+  <li><a href="/">Home</a></li>
+  <li><a href="/about">About</a></li>
+  <li><a href="/newsletter-signup">Newsletter</a></li>
+  <li><a href="/contest/vacation-photo">Vacation Photo Contest</a></li>
+</ul>
+
+<h2>Tell Us About Yourself</h2>
+<form action="/process-contact" method="post">
+  <div>
+    <label>Your name:
+      <input name="name" />
+    </label>
+  </div>
+  <br />
+  <div>
+    <label>Your email
+      <input name="email" type="email" />
+    </label>
+  </div>
+  <br />
+  <div>
+    <button type="submit">Submit</button>
+  </div>
+</form>
+
 <p>Questions? Checkout out our
 <a href="/about" data-test-id="about">About Us</a> page!</p>
