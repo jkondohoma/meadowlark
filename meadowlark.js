@@ -6,13 +6,16 @@
 //  and middleware are added is significant. If we put the 404 handler above the routes,
 //  the home page and About page would stop working;
 
-const express = require("express");
-const expressHandlebars = require("express-handlebars");
-const bodyParser = require("body-parser");
+const express = require('express')
+const expressHandlebars = require('express-handlebars')
+const bodyParser = require('body-parser')
+const cookieParser = require('cookie-parser')
+const expressSession = require('express-session')
 
-const handlers = require("./lib/handlers");
-const weatherMiddlware = require("./lib/middleware/weather");
-const multiparty = require("multiparty");
+const credentials = require('./credentials')
+const handlers = require('./lib/handlers')
+const weatherMiddlware = require('./lib/middleware/weather')
+const flashMiddleware = require('./lib/middleware/flash')
 
 const app = express();
 
@@ -31,30 +34,26 @@ app.engine(
   })
 );
 app.set("view engine", "handlebars");
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json())
+
+app.use(cookieParser(credentials.cookieSecret))
+app.use(expressSession({
+  resave: false,
+  saveUninitialized: false,
+  secret: credentials.cookieSecret,
+}))
 
 /* eslint-disable no-undef */
 const port = process.env.PORT || 3000;
 /* eslint-enable no-undef */
-
-/**
- * app.get is the method by which we’re adding routes. In the Express documentation,
-you will see app.METHOD. This doesn’t mean that there’s literally a method called
-METHOD; it’s just a placeholder for your (lowercased) HTTP verbs (get and post being
-the most common). This method takes two parameters: a path and a function.
-
-The path is what defines the route
-
-it doesn’t care about the case or trailing slash, and it doesn’t consider
-the querystring when performing the match
- */
 
 /* eslint-disable no-undef */
 app.use(express.static(__dirname + "/public"));
 /* eslint-enable no-undef */
 
 app.use(weatherMiddlware);
+app.use(flashMiddleware);
 
 //no longer have to specify the content type or status code: the view
 // engine will return a content type of text/html and a status code of 200 by default.

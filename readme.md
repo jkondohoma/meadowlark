@@ -56,5 +56,7 @@ To run app on local server
 - vacation photo contest file upload
 
 
+## Version 1.2.1 Chapter 9
 
+- cookies & sessions
 
